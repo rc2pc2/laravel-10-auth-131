@@ -20,6 +20,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Author</th>
                             <th scope="col">Title</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,17 +36,17 @@
                                 {{ $post->title }}
                             </td>
                             <td>
-                                <a href="{{ route("admin.posts.show", $post) }}" class="btn btn-sm btn-primary me-2">Show</a>
-                                {{-- <a href="{{ route("post.edit", $post->id) }}"  class="btn btn-sm btn-success me-2">Edit</a> --}}
+                                <a href="{{ route("admin.posts.show", $post) }}" class="btn btn-sm btn-primary me-1">Show</a>
+                                <a href="{{ route("admin.posts.edit", $post) }}"  class="btn btn-sm btn-success me-1">Edit</a>
 
-                                {{-- <form class="d-inline env-destroyer" action="{{ route("admin.posts.delete", $post->id) }}" method="POST" custom-data-name="{{ $post->name }}" >
+                                <form class="d-inline post-destroyer" action="{{ route("admin.posts.delete", $post) }}" method="POST" custom-data-name="{{ $post->title }}" >
                                     @method("DELETE")
                                     @csrf
 
                                     <button type="submit" class="btn btn-sm btn-warning me-2">
                                         Delete
                                     </button>
-                                </form> --}}
+                                </form>
                             </td>
                         </tr>
                         @empty
@@ -55,6 +56,10 @@
                         @endforelse
                     </tbody>
                 </table>
+
+                <div>
+                    {{ $posts->links() }}
+                </div>
             </div>
         </div>
     </div>

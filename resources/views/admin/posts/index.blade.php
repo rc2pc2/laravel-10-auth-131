@@ -18,8 +18,9 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Author</th>
                             <th scope="col">Title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Author</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -30,10 +31,13 @@
                                 {{ $post->id }}
                             </td>
                             <td>
-                                {{ $post->author }}
+                                {{ $post->title }}
                             </td>
                             <td>
-                                {{ $post->title }}
+                                {{ $post->category->name }}
+                            </td>
+                            <td>
+                                {{ $post->author }}
                             </td>
                             <td>
                                 <a href="{{ route("admin.posts.show", $post) }}" class="btn btn-sm btn-primary me-1">Show</a>

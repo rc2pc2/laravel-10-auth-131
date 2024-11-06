@@ -31,6 +31,7 @@ class UpdatePostRequest extends FormRequest
             "title" => [ "required", "string", "min:3", "max:255",
                         Rule::unique("posts")->ignore($this->post)
                     ],
+            "category_id" => [ "required", "numeric", "integer", "exists:categories,id"],
             "author" => [ "required", "string", "min:3", "max:50"],
             "content" => [ "required", "string", "min:15"],
         ];

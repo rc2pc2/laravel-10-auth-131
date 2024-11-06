@@ -8,8 +8,11 @@
                     {{ $post->title }}
                 </h1>
                 <h2 class="">
-                    {{ $post->author }}
+                    {{ $post->category->name }}
                 </h2>
+                <h3 class="">
+                    {{ $post->author }}
+                </h3>
                 <p class="fs-4">
                     {{ $post->content }}
                 </p>

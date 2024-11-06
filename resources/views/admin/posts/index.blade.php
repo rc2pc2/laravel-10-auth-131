@@ -39,7 +39,7 @@
                                 <a href="{{ route("admin.posts.show", $post) }}" class="btn btn-sm btn-primary me-1">Show</a>
                                 <a href="{{ route("admin.posts.edit", $post) }}"  class="btn btn-sm btn-success me-1">Edit</a>
 
-                                <form class="d-inline post-destroyer" action="{{ route("admin.posts.delete", $post) }}" method="POST" custom-data-name="{{ $post->title }}" >
+                                <form class="d-inline post-destroyer" action="{{ route("admin.posts.destroy", $post) }}" method="POST" custom-data-name="{{ $post->title }}" >
                                     @method("DELETE")
                                     @csrf
 

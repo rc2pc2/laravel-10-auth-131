@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware("auth");
+        $this->middleware("auth"); // < OGNI metodo di questo controller deve prima passare per il middleware auth
     }
 
     /**
@@ -79,6 +79,10 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect()->route("admin.posts.index");
+    }
+
+    public function metodoCustom(Post $post){
+        dd($post);
     }
 
 }

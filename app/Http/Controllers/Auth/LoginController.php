@@ -34,6 +34,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        // % ogni metodo di questo controller e' destinato ai visitatori, fatta esclusione del metodo logout
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
     }

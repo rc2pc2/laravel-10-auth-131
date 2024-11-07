@@ -30,6 +30,7 @@ class StorePostRequest extends FormRequest
             "category_id" => [ "required", "numeric", "integer", "exists:categories,id"],
             "author" => [ "required", "string", "min:3", "max:50"],
             "content" => [ "required", "string", "min:15"],
+            "tags" => ["array", "exists:tags,id"],
         ];
     }
 }

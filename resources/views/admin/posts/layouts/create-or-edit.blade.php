@@ -47,6 +47,25 @@
                     @enderror
                 </div>
 
+                <div class="mb-3 ">
+                    <label for="post-tags" class="form-label">Tags:</label>
+                    @foreach ( $tags as $tag )
+                    <div class="form-check">
+                        <input type="checkbox" name="tags[]" id="post-tags" class="form-check-input" value="{{ $tag->id }}"
+                            @if( $post->tags->contains($tag)) checked @endif>
+                        <label type="checkbox" name="tags[]" id="post-tags" class="form-check-label">
+                            {{ $tag->name  }}
+                        </label>
+                    </div>
+                    @endforeach
+
+                    @error("category_id")
+                        <div class="alert alert-warning">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
                 <div class="mb-3">
                     <label for="post-author" class="form-label">Author:</label>
                     <input type="text" name="author" id="post-author" class="form-control" value="{{ old("author", $post->author) }}">

@@ -13,6 +13,15 @@
                 <h3 class="">
                     {{ $post->author }}
                 </h3>
+                <h4>
+                    @forelse ($post->tags as $tag)
+                    <span class="badge text-bg-primary">
+                        #{{ strtolower($tag->name) }}
+                    </span>
+                    @empty
+                        <span>No tags</span>
+                    @endforelse
+                </h4>
                 <p class="fs-4">
                     {{ $post->content }}
                 </p>

@@ -21,6 +21,7 @@
                             <th scope="col">Title</th>
                             <th scope="col">Category</th>
                             <th scope="col">Author</th>
+                            <th scope="col">Tags</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -38,6 +39,16 @@
                             </td>
                             <td>
                                 {{ $post->author }}
+                            </td>
+                            <td>
+                                @forelse ($post->tags as $tag)
+                                    <span class="badge text-bg-primary">
+                                        #{{ strtolower($tag->name) }}
+                                    </span>
+                                @empty
+                                    <span>No tags</span>
+                                @endforelse
+                                {{-- {{ $post->tags }} --}}
                             </td>
                             <td>
                                 <a href="{{ route("admin.posts.show", $post) }}" class="btn btn-sm btn-primary me-1">Show</a>

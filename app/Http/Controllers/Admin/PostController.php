@@ -7,6 +7,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -34,7 +35,8 @@ class PostController extends Controller
     {
         $post = new Post();
         $categories = Category::all();
-        return view("admin.posts.create", compact("post", "categories"));
+        $tags = Tag::all();
+        return view("admin.posts.create", compact("post", "categories", "tags"));
     }
 
     /**
@@ -42,9 +44,17 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $data = $request->validated();
+        $data = $request->validated(); // ! tutto quello che non e' validato non passa
         // dd($data);
         $post = Post::create($data);
+        // % prendi ogni tag in $data["tags"] e associali al mio post ,e quelli che non sono in $data["tags"] rimuovili
+        if (isset($data["tags"])){
+            $post->tags()->sync($data["tags"]);
+        } else {
+            $post->tags()->detach();
+        }
+
+
         return redirect()->route("admin.posts.index");
     }
 
@@ -63,7 +73,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view("admin.posts.edit", compact("post", "categories"));
+        $tags = Tag::all();
+        return view("admin.posts.edit", compact("post", "categories", "tags"));
     }
 
     /**
@@ -73,6 +84,12 @@ class PostController extends Controller
     {
         $data = $request->validated();
         $post->update($data);
+
+        if (isset($data["tags"])){
+            $post->tags()->sync($data["tags"]);
+        } else {
+            $post->tags()->detach();
+        }
 
         return redirect()->route("admin.posts.show", $post);
     }

@@ -38,7 +38,7 @@
                                 {{ $post->category->name }}
                             </td>
                             <td>
-                                {{ $post->author }}
+                                {{ $post->user->name }}
                             </td>
                             <td>
                                 @forelse ($post->tags as $tag)

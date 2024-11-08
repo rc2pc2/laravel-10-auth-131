@@ -28,7 +28,6 @@ class StorePostRequest extends FormRequest
         return [
             "title" => [ "required", "string", "min:3", "max:255", "unique:posts,title"],
             "category_id" => [ "required", "numeric", "integer", "exists:categories,id"],
-            "author" => [ "required", "string", "min:3", "max:50"],
             "content" => [ "required", "string", "min:15"],
             "tags" => ["array", "exists:tags,id"],
         ];

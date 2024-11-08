@@ -11,7 +11,7 @@
                     {{ $post->category->name }}
                 </h2>
                 <h3 class="">
-                    {{ $post->author }}
+                    {{ $post->user->name }} - {{ $post->user->email }}
                 </h3>
                 <h4>
                     @forelse ($post->tags as $tag)

@@ -67,16 +67,6 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="post-author" class="form-label">Author:</label>
-                    <input type="text" name="author" id="post-author" class="form-control" value="{{ old("author", $post->author) }}">
-                    @error("author")
-                        <div class="alert alert-warning">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
                     <label for="post-content" class="form-label">Content:</label>
                     <textarea name="content" id="post-content" cols="30" rows="10" class="form-control">{{ old("content", $post->content) }}</textarea>
                     @error("content")

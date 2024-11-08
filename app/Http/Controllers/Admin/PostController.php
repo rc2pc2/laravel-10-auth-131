@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -44,10 +45,14 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $data = $request->validated(); // ! tutto quello che non e' validato non passa
-        // dd($data);
+        // dd(Auth::id());
+        $data = $request->validated();
+
+        $data["user_id"] = Auth::id();
+
         $post = Post::create($data);
-        // % prendi ogni tag in $data["tags"] e associali al mio post ,e quelli che non sono in $data["tags"] rimuovili
+
+
         if (isset($data["tags"])){
             $post->tags()->sync($data["tags"]);
         } else {

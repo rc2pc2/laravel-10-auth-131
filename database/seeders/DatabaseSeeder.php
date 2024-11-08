@@ -14,10 +14,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
+            RoleSeeder::class,
+            RoleUserSeeder::class,
+            UserDetailSeeder::class,
             CategorySeeder::class,
             TagSeeder::class,
             PostSeeder::class, // ! dipendono dalla categoria, quindi vanno eseguiti dopo
-            PostTagSeeder::class
+            PostTagSeeder::class,
         ]);
     }
 }

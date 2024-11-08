@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
             [
                 "name" => "nina",
                 "email" => "nina@gmail.com",
-                "password" => "12345678"
+                "password" => "12345678",
             ],
             [
                 "name" => "nino",

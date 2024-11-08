@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             // # creo la colonna category_id di tipo Unsigned Big Integer e la posiziono dopo l'id
-            $table->unsignedBigInteger("category_id")->after("id");
+            $table->unsignedBigInteger("category_id")->after("id")->nullable(true);
 
             // % crea un nuovo vincolo di chiave esterna (foreign key)
             // % sulla mia colonna category_id
             // % che faccia riferimento alla colonna id della tabella ESTERNA categories
-            $table->foreign("category_id")->references("id")->on("categories");
+            $table->foreign("category_id")->references("id")->on("categories")->cascadeOnUpdate()->nullOnDelete();
 
             // $table->foreignId("category_id")->constrained();
         });

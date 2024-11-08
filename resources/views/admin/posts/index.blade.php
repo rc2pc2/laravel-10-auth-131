@@ -35,7 +35,11 @@
                                 {{ $post->title }}
                             </td>
                             <td>
-                                {{ $post->category->name }}
+                                @if(isset($post->category))
+                                    {{ $post->category->name }}
+                                @else
+                                    No category
+                                @endif
                             </td>
                             <td>
                                 {{ $post->user->name }}

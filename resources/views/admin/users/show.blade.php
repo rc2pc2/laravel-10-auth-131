@@ -21,7 +21,7 @@
                     {{  $user->userDetail->bio }}
                 </p>
             </div>
-            {{-- <div class="col-12">
+            <div class="col-12">
                 <div class="row">
                     <div class="col-12">
                         <h2 class="py-5">
@@ -42,7 +42,7 @@
                         </div>
                     @endforeach
                 </div>
-            </div> --}}
+            </div>
         </div>
     </section>
 @endsection

@@ -23,9 +23,8 @@ class PostController extends Controller
      */
     public function index()
     {
-
-        // dd(Category::all()->pluck("id"));
         $posts = Post::paginate(10);
+
         return view("admin.posts.index", compact("posts"));
     }
 
@@ -52,15 +51,15 @@ class PostController extends Controller
 
         $post = Post::create($data);
 
-
         if (isset($data["tags"])){
             $post->tags()->sync($data["tags"]);
         } else {
             $post->tags()->detach();
         }
 
-
-        return redirect()->route("admin.posts.index");
+        return redirect()->route("admin.posts.index")
+            ->with('message', "Post $post->title has been created successfully!")
+            ->with('alert-class', "success");
     }
 
     /**
@@ -96,7 +95,9 @@ class PostController extends Controller
             $post->tags()->detach();
         }
 
-        return redirect()->route("admin.posts.show", $post);
+        return redirect()->route("admin.posts.index")
+            ->with('message', "Post $post->title has been updated successfully!")
+            ->with('alert-class', "primary");
     }
 
     /**
@@ -105,11 +106,8 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route("admin.posts.index");
+        return redirect()->route("admin.posts.index")
+            ->with('message', "Post $post->title has been deleted successfully!")
+            ->with('alert-class', "danger");
     }
-
-    public function metodoCustom(Post $post){
-        dd($post);
-    }
-
 }

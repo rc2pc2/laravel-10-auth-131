@@ -4,6 +4,7 @@
     <section class="container">
         <div class="row">
             <div class="col-12 p-4">
+
                 <h1 class="fw-bold">
                     {{ $post->title }}
                 </h1>

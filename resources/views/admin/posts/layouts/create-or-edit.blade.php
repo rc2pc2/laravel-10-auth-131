@@ -18,9 +18,7 @@
                     <label for="post-title" class="form-label">Post Title:</label>
                     <input type="text" name="title" id="post-title" class="form-control" value="{{ old("title", $post->title) }}">
                     @error("title")
-                        <div class="alert alert-warning">
-                            {{ $message }}
-                        </div>
+                        @include("partials.single-name-error-message")
                     @enderror
                 </div>
 
@@ -41,9 +39,7 @@
                     </select>
 
                     @error("category_id")
-                        <div class="alert alert-warning">
-                            {{ $message }}
-                        </div>
+                        @include("partials.single-name-error-message")
                     @enderror
                 </div>
 
@@ -59,20 +55,22 @@
                     </div>
                     @endforeach
 
-                    @error("category_id")
-                        <div class="alert alert-warning">
-                            {{ $message }}
-                        </div>
+
+                    @error("tags")
+                        @include("partials.single-name-error-message")
                     @enderror
+
+                    @error("tags.*")
+                        @include("partials.single-name-error-message")
+                    @enderror
+
                 </div>
 
                 <div class="mb-3">
                     <label for="post-content" class="form-label">Content:</label>
                     <textarea name="content" id="post-content" cols="30" rows="10" class="form-control">{{ old("content", $post->content) }}</textarea>
                     @error("content")
-                        <div class="alert alert-warning">
-                            {{ $message }}
-                        </div>
+                        @include("partials.single-name-error-message")
                     @enderror
                 </div>
 

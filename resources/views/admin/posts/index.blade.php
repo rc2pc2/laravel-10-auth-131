@@ -14,6 +14,9 @@
                         Create new post
                     </a>
                 </div>
+
+                @include("partials.session-message")
+
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>

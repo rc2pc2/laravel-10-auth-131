@@ -29,7 +29,8 @@ class StorePostRequest extends FormRequest
             "title" => [ "required", "string", "min:3", "max:255", "unique:posts,title"],
             "category_id" => [ "required", "numeric", "integer", "exists:categories,id"],
             "content" => [ "required", "string", "min:15"],
-            "tags" => ["array", "exists:tags,id"],
+            "tags" => ["array"],
+            "tags.*" => ["integer", "numeric", "exists:tags,id", "min:1"],
         ];
     }
 }

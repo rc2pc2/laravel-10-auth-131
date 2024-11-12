@@ -44,15 +44,21 @@
                 </div>
 
                 <div class="mb-3 ">
+                    @dump($post->tags->pluck("id")->toArray());
                     <label for="post-tags" class="form-label">Tags:</label>
                     @foreach ( $tags as $tag )
-                    <div class="form-check">
-                        <input type="checkbox" name="tags[]" id="post-tags" class="form-check-input" value="{{ $tag->id }}"
-                            @if( $post->tags->contains($tag)) checked @endif>
-                        <label type="checkbox" name="tags[]" id="post-tags" class="form-check-label">
-                            {{ $tag->name  }}
-                        </label>
-                    </div>
+                        <div class="form-check">
+
+                            <input type="checkbox" name="tags[]" id="post-tags" class="form-check-input" value="{{ $tag->id }}"
+                                    {{-- @if( in_array($tag->id, old("tags", $post->tags->pluck("id")->toArray())))
+                                        checked
+                                    @endif --}}
+                                    @checked(in_array($tag->id, old("tags", $post->tags->pluck("id")->toArray())))
+                                >
+                            <label type="checkbox" name="tags[]" id="post-tags" class="form-check-label">
+                                {{ $tag->name  }}
+                            </label>
+                        </div>
                     @endforeach
 
 

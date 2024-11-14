@@ -31,6 +31,7 @@ class StorePostRequest extends FormRequest
             "content" => [ "required", "string", "min:15"],
             "tags" => ["array"],
             "tags.*" => ["integer", "numeric", "exists:tags,id", "min:1"],
+            "image" => ["nullable", "image", "max:250"]
         ];
     }
 }

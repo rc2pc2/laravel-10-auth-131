@@ -8,6 +8,9 @@
                 <h1 class="fw-bold">
                     {{ $post->title }}
                 </h1>
+
+                <img width="300" src="{{ asset("/storage/" . $post->image) }}" alt="{{ $post->title }}'s image">
+
                 <h2 class="">
                     {{ $post->category->name }}
                 </h2>

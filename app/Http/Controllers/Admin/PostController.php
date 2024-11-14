@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -49,6 +50,12 @@ class PostController extends Controller
 
         $data["user_id"] = Auth::id();
 
+        // % se esiste un file nel campo image della request
+        if ($request->hasFile("image")){
+            $filePath = Storage::disk("public")->put("img/posts/", $request->image); //url immagine caricata
+            $data["image"] = $filePath;
+        }
+
         $post = Post::create($data);
 
         if (isset($data["tags"])){
@@ -87,6 +94,16 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
         $data = $request->validated();
+
+        if ($request->hasFile("image")){
+            if ($post->image){
+                Storage::disk("public")->delete($post->image);
+            }
+
+            $filePath = Storage::disk("public")->put("img/posts/", $request->image); //url immagine caricata
+            $data["image"] = $filePath;
+        }
+
         $post->update($data);
 
         if (isset($data["tags"])){

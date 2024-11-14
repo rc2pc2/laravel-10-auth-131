@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form action="@yield("form-action")" method="POST">
+            <form action="@yield("form-action")" method="POST" enctype="multipart/form-data">
                 @yield("form-method")
                 @csrf
 
@@ -44,7 +44,6 @@
                 </div>
 
                 <div class="mb-3 ">
-                    @dump($post->tags->pluck("id")->toArray());
                     <label for="post-tags" class="form-label">Tags:</label>
                     @foreach ( $tags as $tag )
                         <div class="form-check">
@@ -69,7 +68,14 @@
                     @error("tags.*")
                         @include("partials.single-name-error-message")
                     @enderror
+                </div>
 
+                <div class="mb-3">
+                    <input type="file" name="image" id="post-image" class="form-control">
+
+                    @error("image")
+                        @include("partials.single-name-error-message")
+                    @enderror
                 </div>
 
                 <div class="mb-3">

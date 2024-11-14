@@ -34,7 +34,7 @@ class UpdatePostRequest extends FormRequest
             "category_id" => [ "required", "numeric", "integer", "exists:categories,id"],
             "content" => [ "required", "string", "min:15"],
             "tags" => ["array", "exists:tags,id"],
-
+            "image" => ["nullable", "image", "max:250"]
         ];
     }
 }

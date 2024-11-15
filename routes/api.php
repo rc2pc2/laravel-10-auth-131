@@ -22,6 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get("/posts", [PostController::class, "index"])->name("api.posts.index");
-
+// Route::delete("/posts/{post}", [PostController::class, "destroy"])->name("api.posts.delete");
 
 Route::get("/categories", [CategoryController::class, "index"])->name("api.categories.index");

@@ -26,3 +26,4 @@ Route::get("/posts/{post}", [PostController::class, "show"])->name("api.posts.sh
 // Route::delete("/posts/{post}", [PostController::class, "destroy"])->name("api.posts.delete");
 
 Route::get("/categories", [CategoryController::class, "index"])->name("api.categories.index");
+Route::get("/categories/{category}", [CategoryController::class, "show"])->name("api.categories.show");

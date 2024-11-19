@@ -16,4 +16,13 @@ class CategoryController extends Controller
             "results" => $categories,
         ]);
     }
+
+    public function show(Category $category){
+        $category = Category::with("posts", "posts.user")->findOrFail($category->id);
+
+        return response()->json([
+            "success" => true,
+            "results" => $category,
+        ]);
+    }
 }

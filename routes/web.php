@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Guest\LeadController;
 use App\Http\Controllers\Guest\PostController as GuestPostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,9 @@ Route::name("guest.")->group(function(){
     Route::get('/', [GuestPostController::class, 'index'])->name('home');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource("/posts", GuestPostController::class)->only(["index", "show"]);
+
+    Route::get("/contact-us", [LeadController::class, "create"])->name("leads.create");
+    Route::post("/contact-us", [LeadController::class, "store"])->name("leads.store");
 });
 
 // # rotte aperte esclusivamente a utenti loggati

@@ -16,6 +16,9 @@
                             <a class="nav-link" href="{{ route('admin.posts.index') }}">{{ __('Admin Posts') }}</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.posts.deleted-index') }}">{{ __('Deleted Posts') }}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.posts.create') }}">{{ __('Create new Post') }}</a>
                         </li>
                     @endauth

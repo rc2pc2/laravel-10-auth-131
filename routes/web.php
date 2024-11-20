@@ -32,6 +32,9 @@ Route::name("guest.")->group(function(){
 
 // # rotte aperte esclusivamente a utenti loggati
 Route::middleware("auth")->prefix("/admin")->name("admin.")->group(function(){
+    Route::get("/posts/deleted-index", [AdminPostController::class, "deletedIndex"])->name("posts.deleted-index");
+    Route::patch("/posts/{post}/restore", [AdminPostController::class, "restore"])->name("posts.restore")->withTrashed();
+    Route::delete("/posts/{post}/force-delete", [AdminPostController::class, "forceDelete"])->name("posts.force-delete")->withTrashed();
     Route::resource("/posts", AdminPostController::class)->withTrashed(["show"]);
     Route::get("/users", [UserController::class, "index"])->name("users.index");
     Route::get("/users/{user}", [UserController::class, "show"])->name("users.show");

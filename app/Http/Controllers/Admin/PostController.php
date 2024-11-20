@@ -19,6 +19,31 @@ class PostController extends Controller
         $this->middleware("auth"); // < OGNI metodo di questo controller deve prima passare per il middleware auth
     }
 
+
+    /**
+     * Display a listing of the deleted resources.
+     */
+    public function deletedIndex()
+    {
+        $posts = Post::onlyTrashed()->paginate(10);
+
+        return view("admin.posts.deleted-index", compact("posts"));
+    }
+
+    public function restore(Post $post){
+        $post->restore();
+        return redirect()->route("admin.posts.index")
+            ->with('message', "Post $post->title has been restored succesfully!")
+            ->with('alert-class', "success");
+    }
+
+    public function forceDelete(Post $post){
+        $post->forceDelete();
+        return redirect()->route("admin.posts.deleted-index")
+            ->with('message', "Post $post->title has been PERMANENTLY deleted!")
+            ->with('alert-class', "danger");
+    }
+
     /**
      * Display a listing of the resource.
      */
